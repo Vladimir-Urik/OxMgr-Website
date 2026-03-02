@@ -1,6 +1,6 @@
 # oxmgr-website
 
-Marketing site for [Oxmgr](https://github.com/Vladimir-Urik/OxMgr), built with SvelteKit + Tailwind CSS, deployed to Cloudflare Pages.
+Marketing site for [Oxmgr](https://github.com/Vladimir-Urik/OxMgr), built with SvelteKit + Tailwind CSS and deployed on Cloudflare.
 
 ## Local development
 
@@ -19,7 +19,7 @@ npm run build
 
 Output goes to `.svelte-kit/cloudflare/`.
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare Workers
 
 Requires [Wrangler](https://developers.cloudflare.com/workers/wrangler/) installed and authenticated:
 
@@ -29,10 +29,20 @@ wrangler login
 npm run deploy
 ```
 
-Or connect the repo to Cloudflare Pages via the dashboard (recommended for CI/CD):
+The Wrangler config is in `wrangler.jsonc` and deploys the generated worker entrypoint from `.svelte-kit/cloudflare/_worker.js` together with the static asset bundle.
+
+## Deploy to Cloudflare Pages
+
+If you prefer Pages, this still works too:
+
+```bash
+npm run deploy:pages
+```
+
+Or connect the repo to Cloudflare Pages via the dashboard:
 - Build command: `npm run build`
 - Build output directory: `.svelte-kit/cloudflare`
-- Node.js version: 20
+- Node.js version: 22
 
 ## Type checking
 
