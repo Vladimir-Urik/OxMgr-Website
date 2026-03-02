@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#0a0a0a" />
+		<meta name="description" content="Oxmgr — a lightweight, cross-platform process manager written in Rust. 42x faster crash recovery, 20x lower memory than PM2." />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph defaults (pages override via svelte:head) -->
+		<meta property="og:site_name" content="Oxmgr" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Oxmgr — Rust Process Manager" />
+		<meta property="og:description" content="Lightweight, cross-platform process manager written in Rust. 42× faster crash recovery, 20× lower memory than PM2." />
+		<meta property="og:image" content="https://oxmgr.dev/og-image.png" />
+		<meta property="og:url" content="https://oxmgr.dev" />
+
+		<!-- Twitter Card defaults -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Oxmgr — Rust Process Manager" />
+		<meta name="twitter:description" content="42× faster crash recovery, 20× lower memory than PM2. Written in Rust." />
+		<meta name="twitter:image" content="https://oxmgr.dev/og-image.png" />
+
+		<!-- JSON-LD: SoftwareApplication -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			"name": "Oxmgr",
+			"applicationCategory": "DeveloperApplication",
+			"operatingSystem": "Linux, macOS, Windows",
+			"offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+			"description": "Lightweight, cross-platform process manager written in Rust. 42x faster crash recovery and 20x lower memory usage compared to PM2.",
+			"url": "https://oxmgr.dev",
+			"downloadUrl": "https://github.com/Vladimir-Urik/OxMgr/releases",
+			"softwareVersion": "0.1.1",
+			"programmingLanguage": "Rust",
+			"license": "https://github.com/Vladimir-Urik/OxMgr/blob/main/LICENSE",
+			"codeRepository": "https://github.com/Vladimir-Urik/OxMgr",
+			"author": {
+				"@type": "Person",
+				"name": "Vladimir Urik",
+				"url": "https://github.com/Vladimir-Urik"
+			}
+		}
+		</script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Figtree:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" class="bg-zinc-950 text-zinc-100 antialiased">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	::selection {
+		background: rgba(232, 87, 42, 0.3);
+		color: #fff;
+	}
+
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #09090b;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #3f3f46;
+		border-radius: 3px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #52525b;
+	}
+}
+
+@layer components {
+	.section-label {
+		@apply text-xs font-mono text-rust uppercase tracking-[0.2em] mb-3 flex items-center gap-2;
+	}
+
+	.section-title {
+		@apply font-display font-bold text-white leading-tight;
+	}
+
+	.btn-primary {
+		@apply inline-flex items-center gap-2 bg-rust text-white px-5 py-2.5 text-sm font-semibold
+		       rounded transition-all duration-150 hover:bg-rust-dim active:scale-[0.98]
+		       shadow-[0_0_20px_rgba(232,87,42,0.2)] hover:shadow-[0_0_28px_rgba(232,87,42,0.35)];
+	}
+
+	.btn-ghost {
+		@apply inline-flex items-center gap-2 text-zinc-300 px-5 py-2.5 text-sm font-semibold
+		       rounded border border-zinc-800 hover:border-zinc-600 hover:text-white
+		       transition-all duration-150 active:scale-[0.98];
+	}
+
+	.card {
+		@apply bg-zinc-900 border border-zinc-800 rounded;
+	}
+
+	.code-inline {
+		@apply font-mono text-sm bg-zinc-900 text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-800;
+	}
+
+	/* Stat pill for hero quick stats */
+	.stat-pill {
+		@apply inline-flex items-center gap-1.5 text-xs text-zinc-500 border border-zinc-800
+		       bg-zinc-900/60 rounded-full px-3 py-1.5 font-mono;
+	}
+
+	/* Feature cards with entrance animation */
+	.feature-card {
+		animation: revealUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+}
+
+/* ─── Animations ─── */
+@keyframes revealUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Highlight.js theme overrides — dark, minimal */
+.hljs {
+	background: transparent !important;
+	color: #d4d4d8;
+	padding: 0 !important;
+}
+
+.hljs-keyword,
+.hljs-tag,
+.hljs-name {
+	color: #E8572A;
+}
+
+.hljs-string,
+.hljs-attr {
+	color: #86efac;
+}
+
+.hljs-comment {
+	color: #52525b;
+	font-style: italic;
+}
+
+.hljs-number,
+.hljs-literal {
+	color: #93c5fd;
+}
+
+.hljs-title,
+.hljs-section {
+	color: #fcd34d;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+	color: #d4d4d8;
+}
+
+.hljs-built_in {
+	color: #c4b5fd;
+}
+
+/* Terminal scrollbar */
+.terminal-scroll::-webkit-scrollbar {
+	width: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+	background: #27272a;
+}
