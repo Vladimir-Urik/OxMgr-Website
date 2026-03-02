@@ -29,7 +29,7 @@ wrangler login
 npm run deploy
 ```
 
-The Wrangler config is in `wrangler.jsonc` and deploys the generated worker entrypoint from `.svelte-kit/cloudflare/_worker.js` together with the static asset bundle.
+The Wrangler config is in `wrangler.jsonc` and deploys the generated worker entrypoint from `.svelte-kit/cloudflare/_worker.js` together with the static asset bundle. Routing is handled by the SvelteKit worker, so no global SPA `_redirects` fallback is needed.
 
 ## Deploy to Cloudflare Pages
 
