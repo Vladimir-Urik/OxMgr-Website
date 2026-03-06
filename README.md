@@ -50,6 +50,10 @@ Or connect the repo to Cloudflare Pages via the dashboard:
 npm run check
 ```
 
+## Analytics
+
+This site uses [self-hosted Umami](https://umami.is/) for simple aggregate traffic stats so we can understand visit trends.
+
 ## Project structure
 
 ```

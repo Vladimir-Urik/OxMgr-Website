@@ -44,5 +44,13 @@
 				class="text-zinc-500 hover:text-white transition-colors">Vladimír Urík</a
 			> · Empellio
 		</p>
+		<p class="text-xs text-zinc-600 mt-2">
+			We use <a
+				href="https://umami.is"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-zinc-500 hover:text-white transition-colors">self-hosted Umami Analytics</a
+			> for simple aggregate visitor stats.
+		</p>
 	</div>
 </footer>
