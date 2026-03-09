@@ -126,6 +126,71 @@
 	color: #c4b5fd;
 }
 
+/* ─── Blog / Markdown Prose ─── */
+.blog-prose {
+	@apply prose prose-invert max-w-none;
+	--tw-prose-body: theme('colors.zinc.300');
+	--tw-prose-headings: theme('colors.white');
+	--tw-prose-lead: theme('colors.zinc.400');
+	--tw-prose-links: #E8572A;
+	--tw-prose-bold: theme('colors.white');
+	--tw-prose-counters: theme('colors.zinc.500');
+	--tw-prose-bullets: theme('colors.zinc.600');
+	--tw-prose-hr: theme('colors.zinc.800');
+	--tw-prose-quotes: theme('colors.zinc.300');
+	--tw-prose-quote-borders: #E8572A;
+	--tw-prose-captions: theme('colors.zinc.500');
+	--tw-prose-code: theme('colors.zinc.200');
+	--tw-prose-pre-code: theme('colors.zinc.300');
+	--tw-prose-pre-bg: theme('colors.zinc.900');
+	--tw-prose-th-borders: theme('colors.zinc.700');
+	--tw-prose-td-borders: theme('colors.zinc.800');
+}
+
+.blog-prose h1,
+.blog-prose h2,
+.blog-prose h3 {
+	@apply font-display;
+}
+
+.blog-prose a {
+	@apply transition-colors duration-150 no-underline border-b border-rust/40 hover:border-rust;
+}
+
+.blog-prose code:not(pre code) {
+	@apply font-mono text-sm bg-zinc-900 text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-800;
+	font-weight: normal;
+}
+
+.blog-prose code:not(pre code)::before,
+.blog-prose code:not(pre code)::after {
+	content: none;
+}
+
+.blog-prose pre {
+	@apply bg-zinc-900 border border-zinc-800 rounded-lg;
+}
+
+.blog-prose blockquote {
+	@apply border-l-2 border-rust/60 bg-zinc-900/50 rounded-r-lg py-1;
+}
+
+.blog-prose blockquote p {
+	@apply text-zinc-400;
+}
+
+.blog-prose img {
+	@apply rounded-lg border border-zinc-800;
+}
+
+.blog-prose table {
+	@apply text-sm;
+}
+
+.blog-prose th {
+	@apply font-display font-semibold;
+}
+
 /* Terminal scrollbar */
 .terminal-scroll::-webkit-scrollbar {
 	width: 4px;

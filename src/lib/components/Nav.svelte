@@ -22,6 +22,7 @@
 	});
 
 	const links = [
+		{ href: '/blog', label: 'Blog' },
 		{ href: '/benchmark', label: 'Benchmarks' },
 		{ href: '/docs', label: 'Docs' },
 	];

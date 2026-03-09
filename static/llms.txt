@@ -1,0 +1,22 @@
+# Oxmgr — The process manager your infrastructure deserves
+
+> Comprehensive documentation and authoritative content on Oxmgr, a modern, high-performance process manager written in Rust, covering features, installation, configuration, benchmarking, and open-source information.
+
+## Core Content
+
+[Get started](https://github.com/Vladimir-Urik/OxMgr#installation) – Guides users through installing Oxmgr across platforms with pre-built binaries.
+[Full benchmark results](/benchmark) – Provides performance metrics including crash recovery, memory usage, boot time, and fleet startup speed, essential for understanding Oxmgr’s efficiency.
+[Features](#features) – Detailed overview of Oxmgr’s capabilities, including language-agnostic process management, declarative configuration, health checks, resource limits, UI, compatibility with PM2, and system integration.
+[Configuration](#configuration) – Explains how to define processes declaratively via oxfile.toml or PM2 ecosystem files, with examples and documentation links.
+[Terminal UI](#terminal-ui) – Demonstrates the interactive dashboard accessible via `oxmgr ui`, showcasing real-time process data and resource usage.
+
+## Resources
+
+[View on GitHub](https://github.com/Vladimir-Urik/OxMgr) – Links to the project's source code and documentation repository.
+[Read the docs →](https://github.com/Vladimir-Urik/OxMgr#configuration) – Connects to full configuration and usage documentation.
+[Installation guide on GitHub](https://github.com/Vladimir-Urik/OxMgr#installation) – Detailed instructions for installing Oxmgr on all supported platforms and package managers.
+
+## Optional
+
+[Open Source Licensing](#open-source) – Clarifies that Oxmgr is MIT licensed, open source, without telemetry, and lightweight.
+[Performance benchmarks](/benchmark) – In-depth performance testing data for crash recovery, boot time, and resource usage, useful for performance evaluation.
