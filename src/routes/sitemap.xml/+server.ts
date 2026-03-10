@@ -27,6 +27,15 @@ export const GET: RequestHandler = async () => {
 		{ url: '/', priority: '1.0', changefreq: 'weekly' },
 		{ url: '/blog', priority: '0.9', changefreq: 'daily' },
 		{ url: '/docs', priority: '0.9', changefreq: 'weekly' },
+		{ url: '/docs/installation', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/cli-reference', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/configuration', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/health-checks', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/resource-limits', priority: '0.7', changefreq: 'weekly' },
+		{ url: '/docs/system-services', priority: '0.7', changefreq: 'weekly' },
+		{ url: '/docs/git-webhooks', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/pm2-migration', priority: '0.8', changefreq: 'weekly' },
+		{ url: '/docs/environment-variables', priority: '0.7', changefreq: 'weekly' },
 		{ url: '/benchmark', priority: '0.7', changefreq: 'monthly' }
 	];
 
