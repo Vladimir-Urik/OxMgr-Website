@@ -171,6 +171,13 @@
 	@apply bg-zinc-900 border border-zinc-800 rounded-lg;
 }
 
+/* PrismJS token spans must stay inline — Tailwind's .table utility
+   would otherwise set display:table on spans with class="token table ..." */
+.blog-prose pre span,
+.blog-prose code span {
+	display: inline;
+}
+
 .blog-prose blockquote {
 	@apply border-l-2 border-rust/60 bg-zinc-900/50 rounded-r-lg py-1;
 }
