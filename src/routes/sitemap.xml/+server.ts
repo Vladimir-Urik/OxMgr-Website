@@ -1,5 +1,9 @@
 import type { RequestHandler } from './$types';
 
+// Must NOT be prerendered — today's date must be evaluated at request time,
+// not at build time, so posts become visible in the sitemap on their publish date.
+export const prerender = false;
+
 const SITE_URL = 'https://oxmgr.empellio.com';
 
 interface PostModule {
