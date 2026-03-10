@@ -11,10 +11,15 @@ interface PostModule {
 export const GET: RequestHandler = async () => {
 	const modules = import.meta.glob<PostModule>('/src/posts/*.md', { eager: true });
 
-	const posts = Object.entries(modules).map(([path, module]) => ({
-		slug: path.split('/').pop()?.replace('.md', '') ?? '',
-		date: module.metadata?.date ?? ''
-	}));
+	const today = new Date();
+	today.setHours(23, 59, 59, 999);
+
+	const posts = Object.entries(modules)
+		.map(([path, module]) => ({
+			slug: path.split('/').pop()?.replace('.md', '') ?? '',
+			date: module.metadata?.date ?? ''
+		}))
+		.filter((post) => !post.date || new Date(post.date) <= today);
 
 	posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -54,7 +59,7 @@ ${posts
 	return new Response(sitemap, {
 		headers: {
 			'Content-Type': 'application/xml; charset=utf-8',
-			'Cache-Control': 'max-age=3600'
+			'Cache-Control': 'no-cache, no-store, must-revalidate'
 		}
 	});
 };

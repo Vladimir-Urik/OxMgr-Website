@@ -1,7 +1,5 @@
 import { error } from '@sveltejs/kit';
 
-export const prerender = true;
-
 interface PostModule {
 	default: unknown;
 	metadata: {
@@ -15,13 +13,6 @@ interface PostModule {
 	};
 }
 
-export const entries = async () => {
-	const modules = import.meta.glob<PostModule>('/src/posts/*.md', { eager: true });
-	return Object.keys(modules).map((path) => ({
-		slug: path.split('/').pop()?.replace('.md', '') ?? ''
-	}));
-};
-
 export const load = async ({ params }) => {
 	const modules = import.meta.glob<PostModule>('/src/posts/*.md');
 	const loader = modules[`/src/posts/${params.slug}.md`];
@@ -31,6 +22,12 @@ export const load = async ({ params }) => {
 	}
 
 	const post = await loader();
+
+	const today = new Date();
+	today.setHours(23, 59, 59, 999);
+	if (new Date(post.metadata.date) > today) {
+		throw error(404, 'Post not found');
+	}
 
 	return {
 		content: post.default,
