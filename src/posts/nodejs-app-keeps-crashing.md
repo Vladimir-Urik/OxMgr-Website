@@ -11,6 +11,8 @@ author: Oxmgr Team
 
 Your app is running, something happens, the process dies. The logs show nothing useful. Fifteen minutes later it crashes again. You're losing sleep over it.
 
+The first thing you need while diagnosing the root cause is a process manager doing automatic crash recovery — so at least users aren't stuck staring at a 502 while you investigate. If you haven't set one up yet, start with [What Is Crash Recovery?](/blog/what-is-crash-recovery).
+
 Node.js crashes almost always fall into one of five categories. Here's how to identify which one you're dealing with and fix it.
 
 ## Step 1: Actually Read the Exit Code
@@ -111,7 +113,7 @@ And fix the actual bug — find the synchronous throw that nothing handles.
 
 ## Cause #3: Out of Memory (Exit Code 137)
 
-Exit code 137 means the Linux OOM killer ended your process. Your app was using too much memory.
+Exit code 137 means the Linux OOM killer ended your process. Your app was using too much memory — very likely a memory leak. See [Node.js Memory Leaks in Production](/blog/nodejs-memory-leaks-production) for how to find and fix the root cause.
 
 **Confirm it:**
 

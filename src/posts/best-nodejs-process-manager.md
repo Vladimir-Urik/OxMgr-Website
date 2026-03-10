@@ -9,7 +9,7 @@ author: Oxmgr Team
 
 # Best Node.js Process Manager in 2026
 
-Every Node.js production deployment needs a process manager. The question is which one. In 2026, you have more solid options than ever — and the right answer depends on what you're optimizing for.
+Every Node.js production deployment needs a process manager. The question is which one. In 2026, you have more solid options than ever — and the right answer depends on what you're optimizing for. If you're not sure what a process manager even does, read [What Is a Process Manager?](/blog/what-is-a-process-manager) first.
 
 We tested the main contenders on real hardware and ranked them across the dimensions that actually matter in production.
 
@@ -47,7 +47,7 @@ Oxmgr is a Rust-based process manager built as a modern alternative to PM2. It d
 
 - `oxfile.toml` is clean, version-controllable, and readable at a glance
 - Single binary, no Node.js runtime — install it once and forget about `npm update -g pm2`
-- Crash recovery in 11ms means crashes are effectively invisible to users
+- Crash recovery in 11ms means crashes are effectively invisible to users — see [What Is Crash Recovery?](/blog/what-is-crash-recovery) for why the speed matters
 - Rolling restarts with health check gating — deploy stops automatically if new instance fails
 - PM2 migration built-in: `oxmgr import ecosystem.config.js`
 

@@ -17,6 +17,8 @@ So we built **Oxmgr** — a process manager written in Rust that starts in 38ms 
 
 The core problem isn't that PM2 is bad. It's excellent for what it is: a JavaScript daemon that manages JavaScript processes. But "JavaScript daemon" means it carries the weight of Node.js everywhere it goes.
 
+If you're not familiar with what a process manager does in the first place, the [process manager primer](/blog/what-is-a-process-manager) is a good starting point before continuing here.
+
 We wanted something with no runtime, no garbage collector, and no V8 warmup between your processes crashing and restarting. Rust was the obvious choice.
 
 ## What Oxmgr Does

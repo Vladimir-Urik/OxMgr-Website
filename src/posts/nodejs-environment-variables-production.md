@@ -180,7 +180,7 @@ chmod 600 /var/www/myapp/.env.production
 chown nodeapp:nodeapp /var/www/myapp/.env.production
 ```
 
-Reference it in your process manager:
+Reference it in your process manager (see [How to Deploy Node.js to Production](/blog/how-to-deploy-nodejs-production) for the full env var setup in context):
 
 ```toml
 # oxfile.toml

@@ -15,6 +15,8 @@ Your production app crashes. A bug slips through, memory spikes, a network depen
 
 Without crash recovery, a process that crashes stays dead until a human intervenes. With it, the same crash can be invisible — the process restarts in milliseconds and keeps serving traffic.
 
+Crash recovery is one of the core reasons you need a [process manager](/blog/what-is-a-process-manager) in production — without one, there's nothing watching your app to trigger a restart.
+
 ## How Crash Recovery Works
 
 Every operating system gives processes a way to signal their exit. When a process terminates — whether it crashes, runs out of memory, or is killed — it emits an exit event with a status code.

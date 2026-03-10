@@ -115,7 +115,7 @@ If your app runs in Docker, the container runtime handles restarts. With Kuberne
 
 **Best for:** Developers who want PM2's ease of use but with significantly lower overhead.
 
-Oxmgr is a Rust-based process manager built specifically as a modern, lightweight PM2 alternative. It uses an `oxfile.toml` config file:
+Oxmgr is a Rust-based process manager built specifically as a modern, lightweight PM2 alternative. See the [Oxmgr announcement post](/blog/introducing-oxmgr) for the full backstory on why it was built. It uses an `oxfile.toml` config file:
 
 ```toml
 [processes.api]

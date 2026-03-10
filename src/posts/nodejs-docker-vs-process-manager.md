@@ -9,7 +9,7 @@ author: Oxmgr Team
 
 # Node.js in Docker vs Process Manager — When to Use Each
 
-Both approaches keep Node.js apps running in production. They're not mutually exclusive, but they have different trade-offs. Here's how to choose — and how to combine them when that makes sense.
+Both approaches keep Node.js apps running in production. They're not mutually exclusive, but they have different trade-offs. Here's how to choose — and how to combine them when that makes sense. If you're not sure what a process manager does at a basic level, [What Is a Process Manager?](/blog/what-is-a-process-manager) is the right starting point.
 
 ## What Each Approach Actually Does
 

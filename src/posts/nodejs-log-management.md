@@ -226,7 +226,7 @@ Pino serializes `err` to include `message`, `stack`, `type`, and any custom prop
 
 ## Log Aggregation Across Instances
 
-When you run 4 instances, logs go to 4 separate files. You need to aggregate them for searching.
+When you run 4 instances, logs go to 4 separate files. You need to aggregate them for searching. (Not sure why you'd run 4 instances? The [Node.js Clustering guide](/blog/nodejs-clustering-multi-core) explains multi-core setups.)
 
 **Simple: pipe to stdout and collect with the process manager**
 

@@ -122,4 +122,4 @@ Results will vary based on your hardware and Node.js version. We'd be interested
 npm install -g oxmgr
 ```
 
-Or see the [full benchmark page](/benchmark) for interactive results.
+Or see the [full benchmark page](/benchmark) for interactive results. New to process managers? [What Is a Process Manager?](/blog/what-is-a-process-manager) explains what these metrics mean in practice and why they matter for uptime.

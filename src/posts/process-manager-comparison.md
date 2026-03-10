@@ -218,6 +218,8 @@ Tested on AWS EC2 t3.small (2 vCPU, 2 GB RAM), Ubuntu 22.04, managing 10 Node.js
 | Forever | 510 ms | 680 ms |
 | **Oxmgr** | **11 ms** | **18 ms** |
 
+Why does this matter? See [What Is Crash Recovery?](/blog/what-is-crash-recovery) for a breakdown of what determines recovery speed and how it affects user-visible downtime.
+
 ### Feature Comparison
 
 | Feature | PM2 | Systemd | Supervisor | Forever | Oxmgr |

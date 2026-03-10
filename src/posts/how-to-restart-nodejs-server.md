@@ -58,7 +58,7 @@ Nodemon watches your files and restarts the server when they change. Great for d
 
 ## Method 4: Process Manager Restart (Production)
 
-When you're using a process manager, use its restart command:
+When you're using a process manager, use its restart command. (New to process managers? [What Is Crash Recovery?](/blog/what-is-crash-recovery) explains why automatic restarts matter in production.)
 
 ```bash
 # Oxmgr
@@ -81,7 +81,7 @@ Use this for:
 
 ## Method 5: Zero-Downtime Reload (Production)
 
-This is what you should use for routine deployments:
+This is what you should use for routine deployments. For a full explanation of how rolling restarts work and why they matter, see the [Zero-Downtime Deployment guide](/blog/zero-downtime-deployment).
 
 ```bash
 # Oxmgr — rolling restart with health check gating

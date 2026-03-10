@@ -1,7 +1,7 @@
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ fetch }) => {
-	let latestVersion = '0.1.4';
+	let latestVersion = '0.1.7';
 
 	try {
 		const res = await fetch('https://api.github.com/repos/Vladimir-Urik/OxMgr/releases/latest', {

@@ -19,7 +19,7 @@ Health checks fix this by giving infrastructure a reliable signal to act on.
 
 Three pieces of infrastructure rely on your health endpoint:
 
-**Process managers** (Oxmgr, PM2) — use health checks to determine when a newly spawned process is ready to receive traffic during rolling restarts. Without this, the manager might route traffic to a process that started but isn't ready.
+**Process managers** (Oxmgr, PM2) — use health checks to determine when a newly spawned process is ready to receive traffic during rolling restarts. Without this, the manager might route traffic to a process that started but isn't ready. See [Zero-Downtime Deployment](/blog/zero-downtime-deployment) for the full rolling restart flow.
 
 **Load balancers** (Nginx, HAProxy, AWS ALB) — poll health endpoints continuously. If an instance fails, the load balancer stops routing to it and marks it as down.
 

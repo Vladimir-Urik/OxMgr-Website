@@ -17,9 +17,9 @@ Mark these off before going to production. Revisit quarterly.
 
 ## Process Management
 
-- [ ] **Use a process manager.** Never run `node server.js` directly. Use Oxmgr, PM2, or systemd. A bare process dies on crash and stays dead.
+- [ ] **Use a process manager.** Never run `node server.js` directly. Use Oxmgr, PM2, or systemd. A bare process dies on crash and stays dead. See [What Is a Process Manager?](/blog/what-is-a-process-manager) if you're starting from scratch.
 
-- [ ] **Run multiple instances.** One process per CPU core. Use `instances = "max"` in `oxfile.toml` or `-i max` in PM2. You're leaving performance on the table with a single instance.
+- [ ] **Run multiple instances.** One process per CPU core. Use `instances = "max"` in `oxfile.toml` or `-i max` in PM2. You're leaving performance on the table with a single instance. The [Node.js Clustering guide](/blog/nodejs-clustering-multi-core) covers the tradeoffs in detail.
 
 - [ ] **Set memory limits.** Configure `max_memory_mb` so your process manager restarts the process before the OS OOM killer does. OOM kills leave no logs; clean restarts do.
 
@@ -193,7 +193,7 @@ Mark these off before going to production. Revisit quarterly.
 
 ## Deployment
 
-- [ ] **Use zero-downtime rolling restarts.** `oxmgr reload` / `pm2 reload` — not `restart`. Test that in-flight requests complete during deploys.
+- [ ] **Use zero-downtime rolling restarts.** `oxmgr reload` / `pm2 reload` — not `restart`. Test that in-flight requests complete during deploys. See the [Zero-Downtime Deployment guide](/blog/zero-downtime-deployment) for the complete setup.
 
 - [ ] **Health check your deploy.** After deploying, poll `/health` until it returns 200 before declaring success. A deploy script that exits 0 without verifying health is dangerous.
 

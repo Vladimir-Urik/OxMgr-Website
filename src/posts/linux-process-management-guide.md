@@ -219,7 +219,7 @@ This prevents a runaway process from consuming all available memory and crashing
 
 ## Process Managers vs Systemd
 
-You might wonder: if systemd is already there, why use a separate process manager?
+You might wonder: if systemd is already there, why use a separate process manager? The [PM2 vs Systemd comparison](/blog/pm2-vs-systemd) covers this in depth — short answer: they solve different things and the best setups use both.
 
 | Need | Systemd | Process Manager |
 |------|---------|----------------|

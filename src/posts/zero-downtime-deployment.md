@@ -143,6 +143,8 @@ oxmgr reload api
 
 Oxmgr handles the rollout automatically. If any new instance fails its health check, the rollout stops and remaining instances keep running the old code. You can rollback manually or fix the issue and re-deploy.
 
+The health check endpoint is the key to making this work — see [Health Checks for Node.js Apps](/blog/nodejs-health-checks) for how to build one that actually catches failures.
+
 Configure the health check that guards each step:
 
 ```toml

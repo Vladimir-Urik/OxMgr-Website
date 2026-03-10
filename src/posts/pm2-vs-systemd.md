@@ -39,7 +39,7 @@ RestartSec=5
 pm2 start app.js --restart-delay 5000
 ```
 
-**Winner: Tie** for basic crash recovery. Systemd is slightly faster (~180ms vs ~410ms for PM2) because it has no Node.js runtime overhead.
+**Winner: Tie** for basic crash recovery. Systemd is slightly faster (~180ms vs ~410ms for PM2) because it has no Node.js runtime overhead. (For a deeper look at what crash recovery is and why the numbers matter, see [What Is Crash Recovery?](/blog/what-is-crash-recovery).)
 
 ### Boot Persistence
 
@@ -194,7 +194,7 @@ PM2 is the right choice when:
 
 ## The Third Option: Oxmgr + Systemd
 
-Here's the thing: PM2's two biggest advantages over systemd are cluster mode and zero-downtime deploys. Oxmgr has both — with 20× less memory overhead and 37× faster crash recovery than PM2.
+Here's the thing: PM2's two biggest advantages over systemd are cluster mode and zero-downtime deploys. Oxmgr has both — with 20× less memory overhead and 37× faster crash recovery than PM2. The [Oxmgr vs PM2 benchmark](/blog/oxmgr-vs-pm2-benchmark) has the full numbers with methodology.
 
 The optimal production stack for most Node.js apps on Linux:
 
