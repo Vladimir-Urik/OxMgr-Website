@@ -1,9 +1,7 @@
 <script lang="ts">
-	import type { ComponentType } from 'svelte';
 	import { page } from '$app/stores';
 
 	export let data: {
-		content: ComponentType;
 		metadata: {
 			title: string;
 			description: string;
@@ -15,7 +13,16 @@
 		};
 	};
 
-	$: ({ content: Content, metadata } = data);
+	// Load the component directly — never via data (Svelte components can't be
+	// serialized to JSON, so they vanish after SSR hydration on direct page loads)
+	const modules = import.meta.glob('/src/posts/*.md', { eager: true }) as Record<
+		string,
+		{ default: unknown }
+	>;
+
+	$: slug = $page.params.slug;
+	$: Content = (modules[`/src/posts/${slug}.md`]?.default ?? null) as any;
+	$: metadata = data.metadata;
 
 	function formatDate(dateStr: string) {
 		return new Date(dateStr).toLocaleDateString('en-US', {
@@ -26,7 +33,7 @@
 	}
 
 	$: keywordsStr = metadata.keywords?.join(', ') ?? metadata.tags?.join(', ') ?? '';
-	$: canonicalUrl = `https://oxmgr.empellio.com/blog/${$page.params.slug}`;
+	$: canonicalUrl = `https://oxmgr.empellio.com/blog/${slug}`;
 	$: ogImageUrl = metadata.ogImage ?? 'https://oxmgr.empellio.com/og-image.png';
 </script>
 
@@ -84,7 +91,6 @@
 
 		<!-- Post header -->
 		<header class="mb-10 pb-10 border-b border-zinc-800">
-			<!-- Tags -->
 			{#if metadata.tags && metadata.tags.length > 0}
 				<div class="flex flex-wrap gap-1.5 mb-4">
 					{#each metadata.tags as tag}
@@ -116,7 +122,9 @@
 
 		<!-- Post content -->
 		<article class="blog-prose">
-			<svelte:component this={Content} />
+			{#if Content}
+				<svelte:component this={Content} />
+			{/if}
 		</article>
 
 		<!-- Footer nav -->

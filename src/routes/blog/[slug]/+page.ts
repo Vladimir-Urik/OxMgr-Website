@@ -14,14 +14,12 @@ interface PostModule {
 }
 
 export const load = async ({ params }) => {
-	const modules = import.meta.glob<PostModule>('/src/posts/*.md');
-	const loader = modules[`/src/posts/${params.slug}.md`];
+	const modules = import.meta.glob<PostModule>('/src/posts/*.md', { eager: true });
+	const post = modules[`/src/posts/${params.slug}.md`];
 
-	if (!loader) {
+	if (!post) {
 		throw error(404, 'Post not found');
 	}
-
-	const post = await loader();
 
 	const today = new Date();
 	today.setHours(23, 59, 59, 999);
@@ -29,8 +27,9 @@ export const load = async ({ params }) => {
 		throw error(404, 'Post not found');
 	}
 
+	// Return only serializable metadata — never pass a Svelte component through data
+	// (components can't survive SSR→client serialization, causing blank pages on direct load)
 	return {
-		content: post.default,
 		metadata: post.metadata
 	};
 };
