@@ -20,7 +20,7 @@ export const GET: RequestHandler = async () => {
 
 	const staticPages = [
 		{ url: '/', priority: '1.0', changefreq: 'weekly' },
-		{ url: '/blog', priority: '0.9', changefreq: 'weekly' },
+		{ url: '/blog', priority: '0.9', changefreq: 'daily' },
 		{ url: '/docs', priority: '0.9', changefreq: 'weekly' },
 		{ url: '/benchmark', priority: '0.7', changefreq: 'monthly' }
 	];
