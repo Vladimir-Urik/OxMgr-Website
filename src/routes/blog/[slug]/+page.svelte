@@ -1,27 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	export let data: {
-		metadata: {
-			title: string;
-			description: string;
-			date: string;
-			tags?: string[];
-			keywords?: string[];
-			author?: string;
-			ogImage?: string;
-		};
-	};
-
-	// Load the component directly — never via data (Svelte components can't be
-	// serialized to JSON, so they vanish after SSR hydration on direct page loads)
-	const modules = import.meta.glob('/src/posts/*.md', { eager: true }) as Record<
-		string,
-		{ default: unknown }
-	>;
+	import type { PageData } from './$types';
+	export let data: PageData;
 
 	$: slug = $page.params.slug;
-	$: Content = (modules[`/src/posts/${slug}.md`]?.default ?? null) as any;
+	$: Content = data.Content;
 	$: metadata = data.metadata;
 
 	function formatDate(dateStr: string) {
