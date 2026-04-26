@@ -66,7 +66,7 @@ PYTHONUNBUFFERED = "1"`;
 
 	<div>
 		<p class="doc-step-label">3 — Apply</p>
-		<CodeBlock code="oxmgr apply ./oxfile.toml" language="bash" />
+		<CodeBlock code={`oxmgr validate ./oxfile.toml        # validate first\noxmgr apply ./oxfile.toml           # apply desired state\noxmgr apply ./core.toml ./api.toml  # multiple files supported`} language="bash" />
 		<p class="doc-text mt-3">
 			<code class="code-inline">apply</code> is idempotent — safe to run in CI/CD. Starts new processes, restarts changed ones, leaves untouched ones alone.
 		</p>
@@ -77,6 +77,14 @@ PYTHONUNBUFFERED = "1"`;
 		<CodeBlock code={`oxmgr list           # show all processes\noxmgr logs api -f    # stream logs\noxmgr ui             # interactive terminal UI`} language="bash" />
 		<p class="text-xs text-zinc-600 font-mono mt-2">
 			Full CLI reference: <a href="/docs/cli-reference" class="text-zinc-500 hover:text-white underline underline-offset-2">CLI Reference</a>
+		</p>
+	</div>
+
+	<div>
+		<p class="doc-step-label">5 — Foreground mode (Docker / Kubernetes)</p>
+		<CodeBlock code={`oxmgr runtime ./oxfile.toml\n# PM2 ecosystem files work too:\noxmgr runtime ./ecosystem.config.js`} language="bash" />
+		<p class="doc-text mt-3">
+			<code class="code-inline">runtime</code> runs without a daemon — stays in foreground, forwards logs to stdout/stderr, handles <code class="code-inline">SIGTERM</code>/<code class="code-inline">SIGINT</code>, and applies restart policy inline. Use this as your container entrypoint instead of <code class="code-inline">pm2-runtime</code>.
 		</p>
 	</div>
 </div>

@@ -96,7 +96,7 @@ PYTHONUNBUFFERED = "1"`;
 		{
 			icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="10" cy="15" r="2"/><path d="M7 5h6M5 7v5.5a2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5V7" stroke-linecap="round"/></svg>`,
 			title: 'Git + webhook deploys',
-			desc: 'Trigger oxmgr apply via a webhook after a git push. Pairs cleanly with any CI/CD pipeline — no agent daemons required on the target host.'
+			desc: 'Connect a process to a git repo. oxmgr pull fetches and reloads only when the commit changed. Trigger it via webhook from GitHub Actions or any CI.'
 		},
 		{
 			icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="4" height="12" rx="1"/><rect x="8" y="7" width="4" height="9" rx="1"/><rect x="13" y="2" width="4" height="14" rx="1"/></svg>`,
@@ -107,6 +107,16 @@ PYTHONUNBUFFERED = "1"`;
 			icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M14.36 5.64l1.42-1.42M4.22 15.78l1.42-1.42" stroke-linecap="round"/></svg>`,
 			title: 'System service integration',
 			desc: 'Register oxmgr as a systemd service, launchd agent, or Windows Task Scheduler task. Auto-start on boot with a single command.'
+		},
+		{
+			icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="14" rx="1.5"/><path d="M6 8h8M6 11.5h4" stroke-linecap="round"/><path d="M14 14l2-2-2-2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+			title: 'Container runtime mode',
+			desc: 'Use oxmgr runtime as your Docker or Kubernetes entrypoint — no daemon, foreground process, logs to stdout/stderr. Drop-in replacement for pm2-runtime.'
+		},
+		{
+			icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10a6 6 0 1112 0 6 6 0 01-12 0z"/><path d="M10 7v3l2 1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 4l2 2M15 4l2-2M3 16l2-2M15 16l2 2" stroke-linecap="round"/></svg>`,
+			title: 'File watch & auto-restart',
+			desc: 'Watch source directories for changes and restart automatically. Supports regex ignore patterns and a configurable debounce delay — great for dev and hot-reload setups.'
 		}
 	];
 </script>
