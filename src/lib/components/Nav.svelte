@@ -3,7 +3,7 @@
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	export let version: string = '0.2.0';
+	export let version: string = '0.4.0';
 
 	let menuOpen = false;
 	let scrolled = false;

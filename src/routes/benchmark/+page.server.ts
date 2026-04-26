@@ -124,7 +124,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 	let rows = FALLBACK_ROWS;
 	let fromGitHub = false;
 	let generatedAt = '';
-	let latestVersion = '0.2.0';
+	let latestVersion = '0.4.0';
 
 	const [benchResult, releaseResult] = await Promise.allSettled([
 		fetch('https://raw.githubusercontent.com/Vladimir-Urik/OxMgr/refs/heads/master/benchmark.json', {
