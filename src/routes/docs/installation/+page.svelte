@@ -29,9 +29,14 @@ sudo apt update && sudo apt install oxmgr`;
 <div class="space-y-8">
 
 	<div>
-		<h2 class="doc-subheading">npm / yarn</h2>
-		<CodeBlock code={`npm install -g oxmgr\n# or\nyarn global add oxmgr`} language="bash" />
+		<h2 class="doc-subheading">npm</h2>
+		<CodeBlock code="npm install -g oxmgr" language="bash" />
 		<p class="doc-text mt-2">Works on all platforms where Node.js is installed. Fastest way to get started.</p>
+	</div>
+
+	<div>
+		<h2 class="doc-subheading">yarn</h2>
+		<CodeBlock code="yarn global add oxmgr" language="bash" />
 	</div>
 
 	<div>

@@ -53,6 +53,24 @@ command = "./target/release/api"
 pre_reload_cmd = "cargo build --release"
 # Build runs before reload. If build fails, old process keeps running.`;
 
+	const logDateExample = `[[apps]]
+name = "api"
+command = "node server.js"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+# Output: 2024-01-15 10:30:45: Server listening on port 3000`;
+
+	const unifiedLogsExample = `[[apps]]
+name = "api"
+command = "node server.js"
+unified_logs = true  # merges stdout + stderr into <name>.log`;
+
+	const cronRestartExample = `[[apps]]
+name = "api"
+command = "node server.js"
+cron_restart = "0 0 2 * * *"      # daily at 2:00 AM
+# cron_restart = "0 0 */6 * * *"  # every 6 hours
+# cron_restart = "0 30 9 * * 1-5" # weekdays at 9:30 AM`;
+
 	const deployExample = `[deploy.production]
 user = "ubuntu"
 host = ["192.168.0.13", "192.168.0.14"]
@@ -139,6 +157,9 @@ post_deploy = "oxmgr apply ./oxfile.toml --env production"`;
 						{ key: 'git_repo', type: 'string?', desc: 'Git remote URL for oxmgr pull.' },
 						{ key: 'git_ref', type: 'string?', desc: 'Branch or tag to track.' },
 						{ key: 'pull_secret', type: 'string?', desc: 'Secret for webhook endpoint authentication.' },
+						{ key: 'log_date_format', type: 'string?', desc: 'Prefix each log line with a formatted timestamp (e.g. "%Y-%m-%d %H:%M:%S"). Uses Chrono format syntax.' },
+						{ key: 'unified_logs', type: 'bool?', desc: 'Merge stdout and stderr into a single per-process log file.' },
+						{ key: 'cron_restart', type: 'string?', desc: '6-field cron expression for scheduled restarts (e.g. "0 0 2 * * *" for daily at 2 AM).' },
 						{ key: 'disabled', type: 'bool?', desc: 'Skip this app during apply.' }
 					] as row}
 						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
@@ -206,6 +227,32 @@ post_deploy = "oxmgr apply ./oxfile.toml --env production"`;
 			If it exits non-zero, the reload is aborted and the current process keeps running.
 		</p>
 		<CodeBlock code={preReloadExample} language="toml" />
+	</div>
+
+	<div>
+		<h2 class="doc-heading">Log Date Formatting</h2>
+		<p class="doc-text mb-4">
+			Prefix each log line with a formatted timestamp. Uses <a href="https://docs.rs/chrono/latest/chrono/format/strftime/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">Chrono format syntax</a>.
+		</p>
+		<CodeBlock code={logDateExample} language="toml" filename="oxfile.toml" />
+	</div>
+
+	<div>
+		<h2 class="doc-heading">Unified Logs</h2>
+		<p class="doc-text mb-4">
+			Merge stdout and stderr into a single per-process file. Simplifies log tailing and avoids duplicate sections in <code class="code-inline">oxmgr logs</code>.
+		</p>
+		<CodeBlock code={unifiedLogsExample} language="toml" filename="oxfile.toml" />
+	</div>
+
+	<div>
+		<h2 class="doc-heading">Scheduled Restarts (Cron)</h2>
+		<p class="doc-text mb-4">
+			Restart a process on a cron schedule. Uses a 6-field expression:
+			<code class="code-inline">second minute hour day month dayofweek</code>.
+			Useful for periodic refreshes or maintenance windows.
+		</p>
+		<CodeBlock code={cronRestartExample} language="toml" filename="oxfile.toml" />
 	</div>
 
 	<div>

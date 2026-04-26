@@ -107,6 +107,9 @@ PORT = "80"`;
 						{ topic: 'Dynamic JS execution', pm2: 'yes (config.js)', ox: 'no (safer, version-controlled)' },
 						{ topic: 'Health checks', pm2: 'basic', ox: 'command-based + readiness gating' },
 						{ topic: 'Resource limits', pm2: 'memory only', ox: 'memory + CPU + cgroup v2' },
+						{ topic: 'Log date formatting', pm2: 'log_date_format', ox: 'log_date_format' },
+						{ topic: 'Unified logs', pm2: 'merge_logs', ox: 'unified_logs' },
+						{ topic: 'Scheduled restarts', pm2: 'cron_restart', ox: 'cron_restart' },
 						{ topic: 'Daemon memory', pm2: '~83 MB', ox: '~4 MB' }
 					] as row}
 						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">

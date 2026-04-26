@@ -37,8 +37,9 @@
 					{#each [
 						{ cmd: 'oxmgr list', alias: 'ls, ps', desc: 'Show all processes with status, CPU, RAM, uptime' },
 						{ cmd: 'oxmgr status <name>', alias: '', desc: 'Detailed process info including restart policy, limits, log paths' },
-						{ cmd: 'oxmgr logs <name> [-f]', alias: 'log', desc: 'Stream or show logs. --lines <n> for history' },
-						{ cmd: 'oxmgr ui', alias: '', desc: 'Interactive terminal UI with keyboard + mouse' }
+						{ cmd: 'oxmgr logs <name> [-f] [--lines <n>]', alias: 'log', desc: 'Stream or show logs. oxmgr logs all prints recent logs for every process.' },
+						{ cmd: 'oxmgr ui [--interval-ms <n>]', alias: '', desc: 'Interactive terminal UI with keyboard + mouse' },
+						{ cmd: 'oxmgr runtime <config> [--env <profile>] [--only a,b]', alias: '', desc: 'Foreground/container mode — no daemon, runs processes and forwards logs to stdout/stderr' }
 					] as row}
 						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
 							<td class="px-4 py-3 font-mono text-zinc-200 text-xs whitespace-nowrap">{row.cmd}</td>
@@ -66,11 +67,11 @@
 				<tbody>
 					{#each [
 						{ cmd: 'oxmgr start "<cmd>" --name <n>', alias: '', desc: 'Start a process. See start options below.' },
-						{ cmd: 'oxmgr stop <name>', alias: '', desc: 'Stop a running process' },
-						{ cmd: 'oxmgr restart <name>', alias: 'rs', desc: 'Restart a process (resets crash-loop counter)' },
+						{ cmd: 'oxmgr stop <name|config>', alias: '', desc: 'Stop a running process. stop all stops every managed process.' },
+						{ cmd: 'oxmgr restart <name|config>', alias: 'rs', desc: 'Restart a process (resets crash-loop counter). restart all restarts all.' },
 						{ cmd: 'oxmgr reload <name>', alias: '', desc: 'Graceful reload (zero-downtime where supported)' },
-						{ cmd: 'oxmgr pull [name]', alias: '', desc: 'Git pull + reload/restart only if commit changed' },
-						{ cmd: 'oxmgr delete <name>', alias: 'rm', desc: 'Stop and remove process from daemon state' }
+						{ cmd: 'oxmgr pull [name]', alias: '', desc: 'Git pull + reload/restart only if commit changed. Without target pulls all git-tracked.' },
+						{ cmd: 'oxmgr delete <name|config>', alias: 'rm', desc: 'Stop and remove from daemon state. delete all removes all.' }
 					] as row}
 						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
 							<td class="px-4 py-3 font-mono text-zinc-200 text-xs whitespace-nowrap">{row.cmd}</td>
@@ -126,7 +127,9 @@
 						{ flag: '--cgroup-enforce', def: 'false', desc: 'Apply hard limits via Linux cgroup v2 at spawn time' },
 						{ flag: '--deny-gpu', def: 'false', desc: 'Best-effort GPU disable via env vars' },
 						{ flag: '--pre-reload-cmd <cmd>', def: '', desc: 'Command run before reload. Reload aborts if this fails.' },
-						{ flag: '--reuse-port', def: 'false', desc: 'Best-effort SO_REUSEPORT hint (macOS/Linux only)' }
+						{ flag: '--reuse-port', def: 'false', desc: 'Best-effort SO_REUSEPORT hint (macOS/Linux only)' },
+						{ flag: '--log-date-format <fmt>', def: '', desc: 'Prefix each log line with a timestamp (e.g. "%Y-%m-%d %H:%M:%S")' },
+						{ flag: '--cron-restart <expr>', def: '', desc: '6-field cron expression for scheduled restarts (e.g. "0 0 2 * * *" = daily at 2 AM)' }
 					] as row}
 						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
 							<td class="px-4 py-3 font-mono text-rust text-xs whitespace-nowrap">{row.flag}</td>
@@ -160,6 +163,60 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+
+	<!-- Deploy commands -->
+	<div>
+		<h2 class="doc-heading">Deploy Commands</h2>
+		<p class="doc-text mb-4">PM2-style remote deployment. Requires a <code class="code-inline">[deploy.&lt;env&gt;]</code> block in your <a href="/docs/configuration" class="text-zinc-300 hover:text-white underline underline-offset-2">oxfile.toml</a>.</p>
+		<div class="card overflow-hidden">
+			<table class="w-full text-sm">
+				<tbody>
+					{#each [
+						{ cmd: 'oxmgr deploy <config> <env> setup', desc: 'Initial server setup for a deploy environment.' },
+						{ cmd: 'oxmgr deploy <config> <env> update [--force]', desc: 'Deploy latest commit to remote.' },
+						{ cmd: 'oxmgr deploy <config> <env> revert [n]', desc: 'Roll back N releases (default 1).' },
+						{ cmd: 'oxmgr deploy <config> <env> current', desc: 'Show current deployed release.' },
+						{ cmd: 'oxmgr deploy <config> <env> list', desc: 'List all releases on remote.' },
+						{ cmd: 'oxmgr deploy <config> <env> exec "<cmd>"', desc: 'Run a command in the current release directory.' }
+					] as row}
+						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
+							<td class="px-4 py-3 font-mono text-zinc-200 text-xs align-top whitespace-nowrap pr-6">{row.cmd}</td>
+							<td class="px-4 py-3 text-zinc-400 text-sm">{row.desc}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Service & Daemon -->
+	<div>
+		<h2 class="doc-heading">Service &amp; Daemon</h2>
+		<div class="card overflow-hidden">
+			<table class="w-full text-sm">
+				<tbody>
+					{#each [
+						{ cmd: 'oxmgr doctor', desc: 'Check daemon health, IPC reachability, filesystem layout, cgroup prerequisites, and more.' },
+						{ cmd: 'oxmgr startup [--system <auto|systemd|launchd|task-scheduler>]', desc: 'Enable daemon autostart on boot (convenience shorthand).' },
+						{ cmd: 'oxmgr service install [--system <...>]', desc: 'Install daemon as a system service.' },
+						{ cmd: 'oxmgr service status [--system <...>]', desc: 'Show system service status.' },
+						{ cmd: 'oxmgr service uninstall [--system <...>]', desc: 'Remove system service registration.' },
+						{ cmd: 'oxmgr daemon run', desc: 'Start the Oxmgr daemon process.' },
+						{ cmd: 'oxmgr daemon stop', desc: 'Stop the running daemon.' }
+					] as row}
+						<tr class="border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/20">
+							<td class="px-4 py-3 font-mono text-zinc-200 text-xs align-top whitespace-nowrap pr-6">{row.cmd}</td>
+							<td class="px-4 py-3 text-zinc-400 text-sm">{row.desc}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+		<p class="doc-text mt-3">
+			<code class="code-inline">--system auto</code> resolves to <code class="code-inline">systemd</code> on Linux, <code class="code-inline">launchd</code> on macOS, and <code class="code-inline">task-scheduler</code> on Windows.
+			See <a href="/docs/system-services" class="text-zinc-300 hover:text-white underline underline-offset-2">System Services</a>.
+		</p>
 	</div>
 
 	<!-- Keyboard shortcuts -->
