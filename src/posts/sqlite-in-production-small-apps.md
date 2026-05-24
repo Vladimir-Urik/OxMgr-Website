@@ -197,7 +197,7 @@ A single transaction is one fsync. Without batching, you fsync per row. The diff
 Real-world wins I've seen:
 
 - **Internal tools** that would never be worth a managed DB. SQLite + Litestream costs $0.50/month in S3 storage.
-- **Read-heavy SaaS** where the working set is small enough to fit in cache. SQLite serves them at < 1ms.
+- **Read-heavy SaaS** where the working set is small enough to fit in cache. SQLite serves them at sub-millisecond latency.
 - **Single-tenant deployments** — each customer gets their own SQLite file. No multi-tenancy SQL gymnastics.
 - **Side projects** that turned out not to need scaling and saved $50/month on RDS for years.
 - **Edge or remote deployments** where managing a separate DB process is operational overhead.
