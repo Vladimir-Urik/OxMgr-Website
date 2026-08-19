@@ -105,7 +105,7 @@
 		{/if}
 
 		<pre
-			class="overflow-x-auto p-5 text-sm font-mono leading-relaxed text-zinc-300"
+			class="overflow-hidden p-5 text-sm font-mono leading-relaxed text-zinc-300 whitespace-pre-wrap break-words"
 		><code>{#if highlighted}{@html highlighted}{:else}{escape(code)}{/if}</code></pre>
 	</div>
 </div>
